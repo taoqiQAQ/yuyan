@@ -48,21 +48,59 @@ public class NumbersActivity extends AppCompatActivity {
 //        Log.v("NumbersActivity", "word at index 1: " + words.get(1));
 //        Log.v("NumbersActivity", "word at index 2: " + words.get(2));
 
+
         //找到rootView的LinearLayout
         //将其储存在叫rootView的变量中
-        LinearLayout rootView = (LinearLayout)findViewById(R.id.rootView);
-        //创建TextView对象
-        //该对象会存储在叫做WordView的变量中 数据类型是textView
-        TextView wordView = new TextView(this);
-        /*
-        为了更改在屏幕上显示的文本，我对wordView对象调用serText方法
-        并传入一个输入参数，即要显示的文本
-        在这里我希望TextView显示单词列表中第0个索引处存储的字符串
-         */
-        wordView.setText(words.get(0));
-        /*
-        将wordView视图添加到父视图rootView的子视图
-         */
-        rootView.addView(wordView);
+        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
+
+      //用for循环
+        for (int index = 0; index < words.size(); index++) {
+
+            //创建一个新的TextView
+            TextView wordView = new TextView(this);
+
+            // 将文本设置为当前索引处的字
+            wordView.setText(words.get(index));
+
+            // 将此TextView作为另一个子项添加到此布局的根视图
+            rootView.addView(wordView);
+        }
+
+      //用while循环
+//        //创建一个变量以跟踪当前索引位置
+//        int index = 0;
+//        /*
+//        保持循环，直到我们到达列表的末尾
+//        （这意味着只要当前索引位置小于列表的长度，就保持循环）
+//         */
+//        while (index < words.size()) {
+//
+//            // 创建一个新的TextView
+//            TextView wordView = new TextView(this);
+//
+//            // 将文本设置为当前索引处的字
+//            wordView.setText(words.get(index));
+//
+//            // 将此TextView作为另一个子项添加到此布局的根视图
+//            rootView.addView(wordView);
+//
+//            // 将索引变量增加1
+//            index++;
+//        }
+
+
+//        //创建TextView对象
+//        //该对象会存储在叫做WordView的变量中 数据类型是textView
+//        TextView wordView = new TextView(this);
+//        /*
+//        为了更改在屏幕上显示的文本，我对wordView对象调用serText方法
+//        并传入一个输入参数，即要显示的文本
+//        在这里我希望TextView显示单词列表中第0个索引处存储的字符串
+//         */
+//        wordView.setText(words.get(0));
+//        /*
+//        将wordView视图添加到父视图rootView的子视图
+//         */
+//        rootView.addView(wordView);
     }
 }
