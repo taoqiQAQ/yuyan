@@ -71,24 +71,7 @@ public class NumbersActivity extends AppCompatActivity {
 //        Log.v("NumbersActivity", "word at index 2: " + words.get(2));
 
 
-<<<<<<< HEAD
-        //找到rootView的LinearLayout
-        //将其储存在叫rootView的变量中
-        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
 
-      //用for循环
-        for (int index = 0; index < words.size(); index++) {
-
-            //创建一个新的TextView
-            TextView wordView = new TextView(this);
-
-            // 将文本设置为当前索引处的字
-            wordView.setText(words.get(index));
-
-            // 将此TextView作为另一个子项添加到此布局的根视图
-            rootView.addView(wordView);
-        }
-=======
 //        //找到rootView的LinearLayout
 //        //将其储存在叫rootView的变量中
 //        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
@@ -105,7 +88,24 @@ public class NumbersActivity extends AppCompatActivity {
 //            // 将此TextView作为另一个子项添加到此布局的根视图
 //            rootView.addView(wordView);
 //        }
->>>>>>> yuyan
+
+//        //找到rootView的LinearLayout
+//        //将其储存在叫rootView的变量中
+//        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
+//
+//      //用for循环
+//        for (int index = 0; index < words.size(); index++) {
+//
+//            //创建一个新的TextView
+//            TextView wordView = new TextView(this);
+//
+//            // 将文本设置为当前索引处的字
+//            wordView.setText(words.get(index));
+//
+//            // 将此TextView作为另一个子项添加到此布局的根视图
+//            rootView.addView(wordView);
+//        }
+
 
       //用while循环
 //        //创建一个变量以跟踪当前索引位置
