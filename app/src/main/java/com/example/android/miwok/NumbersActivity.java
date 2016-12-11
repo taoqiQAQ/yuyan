@@ -2,7 +2,6 @@ package com.example.android.miwok;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ public class NumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numbers);
+        setContentView(R.layout.word_list);
 
 //        //创建Words数组
 //        String[] Words = new String[10];
@@ -31,39 +30,66 @@ public class NumbersActivity extends AppCompatActivity {
 //        Log.v("NumbersActivity","Word at index 1: " + Words[1]);
 
         //创建ArrayList：我要添加String元素，所以我使它的字符串类型
-        ArrayList<String> words = new ArrayList<String>();
+        ArrayList<Word> words = new ArrayList<Word>();
         //这是元素应如何添加到数组列表
-        words.add("one");
-        words.add("two");
-        words.add("three");
-        words.add("four");
-        words.add("five");
-        words.add("six");
-        words.add("seven");
-        words.add("eight");
-        words.add("nine");
-        words.add("ten");
+        words.add(new Word("one","lutti"));
+        words.add(new Word("two","otiiko"));
+        words.add(new Word("three","tolookosu"));
+        words.add(new Word("four","oyyisa"));
+        words.add(new Word("five","massokka"));
+        words.add(new Word("six","temmokka"));
+        words.add(new Word("seven","kenekaku"));
+        words.add(new Word("eight","kawinta"));
+        words.add(new Word("nine","wo’e"));
+        words.add(new Word("ten","na’aacha"));
+
+//    //GridView
+//         /*
+//        创建一个{@link ArrayAdapter}，其数据源是一个字符串列表。
+//        适配器知道如何使用Android框架中定义的simple_list_item_1.xml布局资源
+//        为列表中的每个项目创建布局。
+//        此列表项布局包含一个{@link TextView}，适配器将设置为显示单个字。
+//         */
+//        ArrayAdapter<String> itemsAdapter =
+//                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words);
+//
+//        //在{@link Activity}的视图层次结构中查找{@link ListView}对象。
+//        //应该有一个{@link ListView}，其视图ID称为list，
+//        //它在activity_numbers.xml布局文件中声明。
+//        GridView listView = (GridView) findViewById(R.id.list);
+//
+//        //使{@link ListView}使用我们在上面创建的{@link ArrayAdapter}，
+//        //以便{@link ListView}将显示单词列表中每个字词的列表项。
+//        //通过调用{@link ListView}对象上的setAdapter方法并传入1个参数
+//        //（即具有变量名为itemsAdapter的{@link ArrayAdapter}）来执行此操作。
+//        listView.setAdapter(itemsAdapter);
 
 
-        /*
-        创建一个{@link ArrayAdapter}，其数据源是一个字符串列表。
-        适配器知道如何使用Android框架中定义的simple_list_item_1.xml布局资源
-        为列表中的每个项目创建布局。
-        此列表项布局包含一个{@link TextView}，适配器将设置为显示单个字。
-         */
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words);
+     //ListView
 
-        //在{@link Activity}的视图层次结构中查找{@link ListView}对象。
-        //应该有一个{@link ListView}，其视图ID称为list，
-        //它在activity_numbers.xml布局文件中声明。
+        WordAdapter adapter = new WordAdapter(this, words);
         ListView listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(adapter);
 
-        //使{@link ListView}使用我们在上面创建的{@link ArrayAdapter}，
-        //以便{@link ListView}将显示单词列表中每个字词的列表项。
-        //通过调用{@link ListView}对象上的setAdapter方法并传入1个参数
-        //（即具有变量名为itemsAdapter的{@link ArrayAdapter}）来执行此操作。
-        listView.setAdapter(itemsAdapter);
+//        /*
+//        创建一个{@link ArrayAdapter}，其数据源是一个字符串列表。
+//        适配器知道如何使用Android框架中定义的simple_list_item_1.xml布局资源
+//        为列表中的每个项目创建布局。
+//        此列表项布局包含一个{@link TextView}，适配器将设置为显示单个字。
+//         */
+//        ArrayAdapter<Word> itemsAdapter =
+//                new ArrayAdapter<Word>(this, R.layout.list_item , words);
+
+//        //在{@link Activity}的视图层次结构中查找{@link ListView}对象。
+//        //应该有一个{@link ListView}，其视图ID称为list，
+//        //它在activity_numbers.xml布局文件中声明。
+//        ListView listView = (ListView) findViewById(R.id.list);
+//
+//        //使{@link ListView}使用我们在上面创建的{@link ArrayAdapter}，
+//        //以便{@link ListView}将显示单词列表中每个字词的列表项。
+//        //通过调用{@link ListView}对象上的setAdapter方法并传入1个参数
+//        //（即具有变量名为itemsAdapter的{@link ArrayAdapter}）来执行此操作。
+//        listView.setAdapter(itemsAdapter);
 
 //        //通过将每个元素打印到日志中来验证列表的内容
 //        Log.v("NumbersActivity", "word at index 0: " + words.get(0));
@@ -76,22 +102,6 @@ public class NumbersActivity extends AppCompatActivity {
 //        //将其储存在叫rootView的变量中
 //        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
 //
-//      //用for循环
-//        for (int index = 0; index < words.size(); index++) {
-//
-//            //创建一个新的TextView
-//            TextView wordView = new TextView(this);
-//
-//            // 将文本设置为当前索引处的字
-//            wordView.setText(words.get(index));
-//
-//            // 将此TextView作为另一个子项添加到此布局的根视图
-//            rootView.addView(wordView);
-//        }
-
-//        //找到rootView的LinearLayout
-//        //将其储存在叫rootView的变量中
-//        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
 //
 //      //用for循环
 //        for (int index = 0; index < words.size(); index++) {
