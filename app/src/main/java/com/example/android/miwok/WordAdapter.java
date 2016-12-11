@@ -52,9 +52,17 @@ public class WordAdapter extends ArrayAdapter<Word>{
 
         // 在list_item.xml布局中使用ID list_item_icon查找ImageView
         ImageView iconImageView = (ImageView) listItemView.findViewById(R.id.icon_image_view);
-        // 从当前的AndroidFlavor对象获取图像资源ID，并将图像设置为iconView
-        iconImageView.setImageResource(currentWord.getImageResourceId());
 
+        if (currentWord.hadImage()) {
+            // 从当前的AndroidFlavor对象获取图像资源ID，并将图像设置为iconView
+            iconImageView.setImageResource(currentWord.getImageResourceId());
+            // 请确保视图是可见的
+            iconImageView.setVisibility(View.VISIBLE);
+        }
+        else {
+            //否则隐藏iconImageView
+            iconImageView.setVisibility(View.GONE);
+        }
         // 返回整个列表项布局（包含2个TextView和一个ImageView），以便它可以显示在ListView中
         return listItemView;
     }

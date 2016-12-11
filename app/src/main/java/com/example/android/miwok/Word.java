@@ -16,7 +16,10 @@ public class Word {
      */
     private String mMiwokTranslation;
     // 图像资源 ID
-    private int mImageResourceId;
+    private int mImageResourceId = NO_IMAGE_PROVIDED;
+
+
+    private static final int NO_IMAGE_PROVIDED = -1;
 
     /**
      * 创建一个新的Word对象。
@@ -24,6 +27,19 @@ public class Word {
      * @param defaultTranslation 是用户已经熟悉的语言中的单词
      *                           (such as English)
      * @param miwokTranslation   是Miyok语言中的词
+     */
+    public Word(String defaultTranslation, String miwokTranslation) {
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+    }
+
+    /**
+     * 创建一个新的Word对象。
+     *
+     * @param defaultTranslation 是用户已经熟悉的语言中的单词
+     *                           (such as English)
+     * @param miwokTranslation   是Miyok语言中的词
+     * @param imageResourceId    是与该词相关联的图像的可绘制资源ID
      */
     public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
         mDefaultTranslation = defaultTranslation;
@@ -49,6 +65,16 @@ public class Word {
      */
     public int getImageResourceId() {
         return mImageResourceId;
+    }
+
+    /**
+     * 返回此字词是否有图片
+     *
+     */
+    public boolean hadImage(){
+        //mImageResourceId不等于-1 那么就存在有效的图片 该方法应返回true
+        //mImageResourceId等于-1 那么该方法没有图片 该方法会返回false
+        return mImageResourceId != NO_IMAGE_PROVIDED;
     }
 
 }
