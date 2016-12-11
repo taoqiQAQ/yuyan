@@ -32,16 +32,16 @@ public class NumbersActivity extends AppCompatActivity {
         //创建ArrayList：我要添加String元素，所以我使它的字符串类型
         ArrayList<Word> words = new ArrayList<Word>();
         //这是元素应如何添加到数组列表
-        words.add(new Word("one","lutti"));
-        words.add(new Word("two","otiiko"));
-        words.add(new Word("three","tolookosu"));
-        words.add(new Word("four","oyyisa"));
-        words.add(new Word("five","massokka"));
-        words.add(new Word("six","temmokka"));
-        words.add(new Word("seven","kenekaku"));
-        words.add(new Word("eight","kawinta"));
-        words.add(new Word("nine","wo’e"));
-        words.add(new Word("ten","na’aacha"));
+        words.add(new Word("one","lutti",R.drawable.tu));
+        words.add(new Word("two","otiiko",R.drawable.tu));
+        words.add(new Word("three","tolookosu",R.drawable.tu));
+        words.add(new Word("four","oyyisa",R.drawable.tu));
+        words.add(new Word("five","massokka",R.drawable.tu));
+        words.add(new Word("six","temmokka",R.drawable.tu));
+        words.add(new Word("seven","kenekaku",R.drawable.tu));
+        words.add(new Word("eight","kawinta",R.drawable.tu));
+        words.add(new Word("nine","wo’e",R.drawable.tu));
+        words.add(new Word("ten","na’aacha",R.drawable.tu));
 
 //    //GridView
 //         /*

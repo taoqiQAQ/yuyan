@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -48,6 +49,11 @@ public class WordAdapter extends ArrayAdapter<Word>{
         // 将此文本设置为数字TextView
         defaultTextView.setText(currentWord.getDefaultTranslation());
 
+
+        // 在list_item.xml布局中使用ID list_item_icon查找ImageView
+        ImageView iconImageView = (ImageView) listItemView.findViewById(R.id.icon_image_view);
+        // 从当前的AndroidFlavor对象获取图像资源ID，并将图像设置为iconView
+        iconImageView.setImageResource(currentWord.getImageResourceId());
 
         // 返回整个列表项布局（包含2个TextView和一个ImageView），以便它可以显示在ListView中
         return listItemView;

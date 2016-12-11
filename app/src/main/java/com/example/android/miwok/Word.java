@@ -15,6 +15,8 @@ public class Word {
      * Miwok翻译的单词
      */
     private String mMiwokTranslation;
+    // 图像资源 ID
+    private int mImageResourceId;
 
     /**
      * 创建一个新的Word对象。
@@ -23,9 +25,10 @@ public class Word {
      *                           (such as English)
      * @param miwokTranslation   是Miyok语言中的词
      */
-    public Word(String defaultTranslation, String miwokTranslation) {
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mImageResourceId = imageResourceId;
     }
 
     /**
@@ -41,4 +44,11 @@ public class Word {
     public String getMiwokTranslation() {
         return mMiwokTranslation;
     }
+    /**
+     * 获取图像资源ID
+     */
+    public int getImageResourceId() {
+        return mImageResourceId;
+    }
+
 }
