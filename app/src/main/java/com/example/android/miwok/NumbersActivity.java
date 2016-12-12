@@ -67,8 +67,15 @@ public class NumbersActivity extends AppCompatActivity {
 
      //ListView
 
-        WordAdapter adapter = new WordAdapter(this, words);
+        //创建一个{@link WordAdapter}，其数据源是一个{@link Word}的列表。
+        //适配器知道如何为列表中的每个项目创建列表项。
+        WordAdapter adapter = new WordAdapter(this, words,R.color.category_numbers);
+        //在{@link Activity}的视图层次结构中查找{@link ListView}对象。
+        //应该有一个{@link ListView}，视图ID称为list，它在中声明
+        // word_list.xml布局文件。
         ListView listView = (ListView) findViewById(R.id.list);
+        //使{@link ListView}使用我们在上面创建的{@link WordAdapter}，以便
+        // {@link ListView}将显示列表中每个{@link Word}的列表项。
         listView.setAdapter(adapter);
 
 //        /*
