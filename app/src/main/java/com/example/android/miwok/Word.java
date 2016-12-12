@@ -21,16 +21,21 @@ public class Word {
 
     private static final int NO_IMAGE_PROVIDED = -1;
 
+    // 字的音频资源ID
+    private int mAudioResourceId;
+
     /**
      * 创建一个新的Word对象。
      *
      * @param defaultTranslation 是用户已经熟悉的语言中的单词
      *                           (such as English)
      * @param miwokTranslation   是Miyok语言中的词
+     * @param audioResourceId    是与此字相关联的音频文件的资源ID
      */
-    public Word(String defaultTranslation, String miwokTranslation) {
+    public Word(String defaultTranslation, String miwokTranslation, int audioResourceId ) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mAudioResourceId = audioResourceId;
     }
 
     /**
@@ -40,11 +45,13 @@ public class Word {
      *                           (such as English)
      * @param miwokTranslation   是Miyok语言中的词
      * @param imageResourceId    是与该词相关联的图像的可绘制资源ID
+     * @param audioResourceId    是与此字相关联的音频文件的资源ID
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId ,int audioResourceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceId = imageResourceId;
+        mAudioResourceId = audioResourceId;
     }
 
     /**
@@ -75,6 +82,13 @@ public class Word {
         //mImageResourceId不等于-1 那么就存在有效的图片 该方法应返回true
         //mImageResourceId等于-1 那么该方法没有图片 该方法会返回false
         return mImageResourceId != NO_IMAGE_PROVIDED;
+    }
+
+    /**
+     *返回字的音频资源ID。
+     */
+    public int getAudioResourceId() {
+        return mAudioResourceId;
     }
 
 }

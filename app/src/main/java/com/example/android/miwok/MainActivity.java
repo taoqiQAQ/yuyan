@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Set the content of the activity to use the activity_main.xml layout file
+        // 将活动的内容设置为使用activity_main.xml布局文件
         setContentView(R.layout.activity_main);
 
         //第34 38 行跟NumbersClickListener一起注销的 要一起用 跳出提示框

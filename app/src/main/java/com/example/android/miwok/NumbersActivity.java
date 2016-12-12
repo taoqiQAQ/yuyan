@@ -1,12 +1,18 @@
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
+
+    //处理所有声音文件的播放
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +36,48 @@ public class NumbersActivity extends AppCompatActivity {
 //        Log.v("NumbersActivity","Word at index 1: " + Words[1]);
 
         //创建ArrayList：我要添加String元素，所以我使它的字符串类型
-        ArrayList<Word> words = new ArrayList<Word>();
+        final ArrayList<Word> words = new ArrayList<Word>();
         //这是元素应如何添加到数组列表
-        words.add(new Word("one","lutti",R.drawable.number_one));
-        words.add(new Word("two","otiiko",R.drawable.number_two));
-        words.add(new Word("three","tolookosu",R.drawable.number_three));
-        words.add(new Word("four","oyyisa",R.drawable.number_four));
-        words.add(new Word("five","massokka",R.drawable.number_five));
-        words.add(new Word("six","temmokka",R.drawable.number_six));
-        words.add(new Word("seven","kenekaku",R.drawable.number_seven));
-        words.add(new Word("eight","kawinta",R.drawable.number_eight));
-        words.add(new Word("nine","wo’e",R.drawable.number_nine));
-        words.add(new Word("ten","na’aacha",R.drawable.number_ten));
+        words.add(new Word("one","lutti",R.drawable.number_one,R.raw.number_one));
+        words.add(new Word("two","otiiko",R.drawable.number_two,R.raw.number_two));
+        words.add(new Word("three","tolookosu",R.drawable.number_three,R.raw.number_three));
+        words.add(new Word("four","oyyisa",R.drawable.number_four,R.raw.number_four));
+        words.add(new Word("five","massokka",R.drawable.number_five,R.raw.number_five));
+        words.add(new Word("six","temmokka",R.drawable.number_six,R.raw.number_six));
+        words.add(new Word("seven","kenekaku",R.drawable.number_seven,R.raw.number_seven));
+        words.add(new Word("eight","kawinta",R.drawable.number_eight,R.raw.number_eight));
+        words.add(new Word("nine","wo’e",R.drawable.number_nine,R.raw.number_nine));
+        words.add(new Word("ten","na’aacha",R.drawable.number_ten,R.raw.number_ten));
+
+
+
+
+     //ListView
+
+        //创建一个{@link WordAdapter}，其数据源是一个{@link Word}的列表。
+        //适配器知道如何为列表中的每个项目创建列表项。
+        WordAdapter adapter = new WordAdapter(this, words,R.color.category_numbers);
+        //在{@link Activity}的视图层次结构中查找{@link ListView}对象。
+        //应该有一个{@link ListView}，视图ID称为list，它在中声明
+        // word_list.xml布局文件。
+        ListView listView = (ListView) findViewById(R.id.list);
+        //使{@link ListView}使用我们在上面创建的{@link WordAdapter}，以便
+        // {@link ListView}将显示列表中每个{@link Word}的列表项。
+        listView.setAdapter(adapter);
+
+        //设置点击监听器以在单击列表项时播放音频
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long Id) {
+
+                //在用户点击的给定位置获取{@link Word}对象
+                Word word = words.get(position);
+                //为与当前字相关联的音频资源创建并设置{@link Media Player}
+                mMediaPlayer  = MediaPlayer.create(NumbersActivity.this, word.getAudioResourceId());
+                //启动音频文件
+                mMediaPlayer.start(); // no need to call prepare(); create() does that for you
+            }
+        });
 
 //    //GridView
 //         /*
@@ -65,18 +101,6 @@ public class NumbersActivity extends AppCompatActivity {
 //        listView.setAdapter(itemsAdapter);
 
 
-     //ListView
-
-        //创建一个{@link WordAdapter}，其数据源是一个{@link Word}的列表。
-        //适配器知道如何为列表中的每个项目创建列表项。
-        WordAdapter adapter = new WordAdapter(this, words,R.color.category_numbers);
-        //在{@link Activity}的视图层次结构中查找{@link ListView}对象。
-        //应该有一个{@link ListView}，视图ID称为list，它在中声明
-        // word_list.xml布局文件。
-        ListView listView = (ListView) findViewById(R.id.list);
-        //使{@link ListView}使用我们在上面创建的{@link WordAdapter}，以便
-        // {@link ListView}将显示列表中每个{@link Word}的列表项。
-        listView.setAdapter(adapter);
 
 //        /*
 //        创建一个{@link ArrayAdapter}，其数据源是一个字符串列表。
