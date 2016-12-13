@@ -1,7 +1,6 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +36,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
         mColorResourceId = colorResourceId;
     }
 
-    @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // 检查现有视图是否正在重用，否则扩充视图
