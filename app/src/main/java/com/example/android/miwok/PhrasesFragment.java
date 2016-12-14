@@ -1,17 +1,24 @@
 package com.example.android.miwok;
 
+
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class PhrasesActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class PhrasesFragment extends Fragment {
+
     //处理所有声音文件的播放
     private MediaPlayer mMediaPlayer;
 
@@ -57,13 +64,20 @@ public class PhrasesActivity extends AppCompatActivity {
         }
     };
 
+
+    public PhrasesFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.word_list, container, false);
+
 
         // 创建并设置{@link AudioManager}以请求音频焦点
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
         // 创建单词列表
         final ArrayList<Word> words = new ArrayList<Word>();
@@ -80,11 +94,11 @@ public class PhrasesActivity extends AppCompatActivity {
 
         // 创建一个{@link WordAdapter}，其数据源是{@link Word}的列表。
         // 适配器知道如何为列表中的每个项目创建列表项。
-        WordAdapter adapter = new WordAdapter(this, words, R.color.category_phrases);
+        WordAdapter adapter = new WordAdapter(getActivity(), words, R.color.category_phrases);
 
         //在{@link Activity}的视图层次结构中查找{@link ListView}对象。
         //应该有一个{@link ListView}，视图ID称为list，它在word_list.xml布局文件中声明。
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = (ListView) rootView.findViewById(R.id.list);
 
         //使{@link ListView}使用我们在上面创建的{@link WordAdapter}，
         // 以便{@link ListView}将显示列表中每个{@link Word}的列表项。
@@ -113,7 +127,7 @@ public class PhrasesActivity extends AppCompatActivity {
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     // 现在已经具有Audio Focus 了
                     //为与当前字相关联的音频资源创建并设置{@link Media Player}
-                    mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, word.getAudioResourceId());
+                    mMediaPlayer = MediaPlayer.create(getActivity(), word.getAudioResourceId());
 
                     //启动音频文件
                     mMediaPlayer.start(); // no need to call prepare(); create() does that for you
@@ -124,15 +138,18 @@ public class PhrasesActivity extends AppCompatActivity {
                 }
             }
         });
+
+        return rootView;
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         //当活动停止时，释放媒体播放器资源，
         // 因为我们不会再播放任何声音。
         releaseMediaPlayer();
     }
+
     /**
      * 通过释放其资源来清理媒体播放器。
      */
@@ -151,4 +168,5 @@ public class PhrasesActivity extends AppCompatActivity {
             mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
+
 }
